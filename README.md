@@ -184,37 +184,122 @@ Each business question has its own notebook cell with a named output table in th
 ### 💰 Sales & Revenue
 
 **Q1 — What is the total revenue per year?**
-Joins `orders` + `order_items` to get revenue per year. 
-
+```
++----+-------------+
+|year|Total_Revenue|
++----+-------------+
+|2016|     46653.74|
+|2017|   6921535.24|
+|2018|   8451584.77|
++----+-------------+
+```
 **Q2 — Which product categories drive the most sales?**
-Returns revenue per category with .
+```
++--------------------+-------------+
+|            category|Total_Revenue|
++--------------------+-------------+
+|        beleza_saude|   1412089.53|
+|  relogios_presentes|   1264333.12|
+|     cama_mesa_banho|   1225209.26|
+|       esporte_lazer|   1118256.91|
+|informatica_acess...|   1032723.77|
+|    moveis_decoracao|    880329.92|
+|utilidades_domest...|    758392.25|
+|          cool_stuff|    691680.89|
+|          automotivo|    669454.75|
+|  ferramentas_jardim|    567145.68|
+|          brinquedos|    547061.06|
+|               bebes|    466727.65|
+|          perfumaria|    443171.63|
+|           telefonia|    379202.62|
+|   moveis_escritorio|    335211.36|
+|           papelaria|    269575.05|
+|            pet_shop|    250614.20|
+|                 pcs|    228349.76|
+|instrumentos_musi...|    202187.12|
+|         eletronicos|    200723.09|
++--------------------+-------------+
+```
 
 ---
 
 ### 👥 Customer Behaviour
 
 **Q3 — Who are the top 10 customers by total spend?**
+```
++--------------------+-------------+
+|         customer_id|Total_Revenue|
++--------------------+-------------+
+|1617b1357756262bf...|     13664.08|
+|ec5b2ba62e5743423...|      7274.88|
+|c6e2731c5b391845f...|      6929.31|
+|f48d464a0baaea338...|      6922.21|
+|3fd6777bbce08a352...|      6726.66|
+|05455dfa7cd02f13d...|      6081.54|
+|df55c14d1476a9a34...|      4950.34|
+|24bbf5fd2f2e1b359...|      4764.34|
+|3d979689f636322c6...|      4681.78|
+|1afc82cd60e303ef0...|      4513.32|
++--------------------+-------------+
+```
 
 ---
 
 ### 📦 Order Operations
 
 **Q4 — What is the order status breakdown?**
+```
++------------+------------+------------+
+|order_status|total_orders|pct_of_total|
++------------+------------+------------+
+|   delivered|       96478|       97.02|
+|     shipped|        1107|        1.11|
+|    canceled|         625|        0.63|
+| unavailable|         609|        0.61|
+|    invoiced|         314|        0.32|
+|  processing|         301|        0.30|
+|     created|           5|        0.01|
+|    approved|           2|        0.00|
++------------+------------+------------+
+```
 
 **Q5 — What is the average delivery time?**
+```
++------------------+
+|  avg_delivry_days|
++------------------+
+|12.497336125046644|
++------------------+
+```
 
 ---
 
 ### ⭐ Customer Satisfaction
 
-**Q6 — What is the average review score by product category?**
+**Q6 — What is the average review score by product category? (top 10)**
+```
++---------------------+----------------+
+|product_category_name|avg_review_score|
++---------------------+----------------+
+|    cds_dvds_musicais|            4.64|
+| fashion_roupa_inf...|             4.5|
+| livros_interesse_...|            4.45|
+| construcao_ferram...|            4.44|
+|               flores|            4.42|
+|    livros_importados|             4.4|
+|      livros_tecnicos|            4.36|
+|     malas_acessorios|            4.31|
+|    alimentos_bebidas|            4.31|
+| portateis_casa_fo...|             4.3|
++---------------------+----------------+
+```
 
 
 ## How to Run
 
 
 ```bash
-# 1. Load CSVs into MariaDB
+# 1. Load CSVs into MariaDB on ecommerce schema
 mysql --local-infile=1 -u your_user -p ecommerce < csv_to_mysql/load_csv_to_mariadb.sql
 
 # 2. Ingest into HDFS (Bronze)
